@@ -1,6 +1,7 @@
 "use client";
 
 import { navItems } from "@/data";
+import dynamic from "next/dynamic";
 
 import Hero from "@/components/Hero";
 import Grid from "@/components/Grid";
@@ -12,6 +13,13 @@ import RecentProjects from "@/components/RecentProjects";
 import { FloatingNav } from "@/components/ui/FloatingNavbar";
 import Services from "@/components/Services";
 import Pricing from "@/components/Pricing";
+
+const BentoGrid = dynamic(
+  () => import("../components/ui/BentoGrid").then((m) => m.BentoGrid),
+  {
+    ssr: false,
+  }
+);
 
 const Home = () => {
   return (
