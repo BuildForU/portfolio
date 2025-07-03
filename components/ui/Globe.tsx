@@ -91,7 +91,7 @@ export function Globe({ globeConfig, data }: WorldProps) {
   };
   const defaultProps = useMemo(
     () => ({ ...defaultPropsBase, ...globeConfig }),
-    [globeConfig]
+    [defaultPropsBase, globeConfig]
   );
 
   const _buildMaterial = useCallback(() => {
@@ -241,7 +241,7 @@ export function WebGLRendererConfig() {
     gl.setPixelRatio(window.devicePixelRatio);
     gl.setSize(size.width, size.height);
     gl.setClearColor(0xffaaff, 0);
-  }, []);
+  }, [gl, size.width, size.height]);
 
   return null;
 }
