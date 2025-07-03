@@ -63,9 +63,9 @@ export const gridItems = [
   },
   {
     id: 6,
-    title: "Let's Build Your Website!",
+    title: "Let&apos;s Build Your Website!",
     description:
-      "Ready to get started? Contact us for a free quote and let's make your vision a reality.",
+      "Ready to get started? Contact us for a free quote and let&apos;s make your vision a reality.",
     className: "lg:col-span-2 md:col-span-3 md:row-span-1",
     imgClassName: "",
     titleClassName: "justify-center md:max-w-full max-w-60 text-center",
