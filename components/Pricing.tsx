@@ -29,6 +29,7 @@ const Pricing = () => {
         businesses. That's why we offer affordable packages. Custom pricing
         available for unique needs.
       </p>
+      <p>It&apos;s easy to get started!</p>
     </section>
   );
 };
