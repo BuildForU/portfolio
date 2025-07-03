@@ -26,7 +26,7 @@ const Pricing = () => {
       </div>
       <p className="text-center text-white-200 dark:text-white/80 mt-8">
         We know budgets can be tight, especially for schools and small
-        businesses. That's why we offer affordable packages. Custom pricing
+        businesses. That&apos;s why we offer affordable packages. Custom pricing
         available for unique needs.
       </p>
       <p>It&apos;s easy to get started!</p>

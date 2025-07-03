@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { Color, Scene, Fog, PerspectiveCamera, Vector3 } from "three";
 import ThreeGlobe from "three-globe";
 import { useThree, Object3DNode, Canvas, extend } from "@react-three/fiber";
@@ -74,7 +74,7 @@ export function Globe({ globeConfig, data }: WorldProps) {
 
   const globeRef = useRef<ThreeGlobe | null>(null);
 
-  const defaultProps = {
+  const defaultPropsBase = {
     pointSize: 1,
     atmosphereColor: "#ffffff",
     showAtmosphere: true,
@@ -88,25 +88,24 @@ export function Globe({ globeConfig, data }: WorldProps) {
     arcLength: 0.9,
     rings: 1,
     maxRings: 3,
-    ...globeConfig,
   };
+  const defaultProps = { ...defaultPropsBase, ...globeConfig };
 
-  const _buildMaterial = () => {
+  const _buildMaterial = useCallback(() => {
     if (!globeRef.current) return;
-
     const globeMaterial = globeRef.current.globeMaterial() as unknown as {
       color: Color;
       emissive: Color;
       emissiveIntensity: number;
       shininess: number;
     };
-    globeMaterial.color = new Color(globeConfig.globeColor);
-    globeMaterial.emissive = new Color(globeConfig.emissive);
-    globeMaterial.emissiveIntensity = globeConfig.emissiveIntensity || 0.1;
-    globeMaterial.shininess = globeConfig.shininess || 0.9;
-  };
+    globeMaterial.color = new Color(defaultProps.globeColor);
+    globeMaterial.emissive = new Color(defaultProps.emissive);
+    globeMaterial.emissiveIntensity = defaultProps.emissiveIntensity || 0.1;
+    globeMaterial.shininess = defaultProps.shininess || 0.9;
+  }, [defaultProps]);
 
-  const _buildData = () => {
+  const _buildData = useCallback(() => {
     const arcs = data;
     let points = [];
     for (let i = 0; i < arcs.length; i++) {
@@ -127,7 +126,6 @@ export function Globe({ globeConfig, data }: WorldProps) {
         lng: arc.endLng,
       });
     }
-
     // remove duplicates for same lat and lng
     const filteredPoints = points.filter(
       (v, i, a) =>
@@ -137,13 +135,11 @@ export function Globe({ globeConfig, data }: WorldProps) {
           )
         ) === i
     );
-
     setGlobeData(filteredPoints);
-  };
+  }, [data, defaultProps.pointSize]);
 
-  const startAnimation = () => {
+  const startAnimation = useCallback(() => {
     if (!globeRef.current || !globeData) return;
-
     globeRef.current
       .arcsData(data)
       .arcStartLat((d) => (d as { startLat: number }).startLat * 1)
@@ -161,14 +157,12 @@ export function Globe({ globeConfig, data }: WorldProps) {
       .arcDashInitialGap((e) => (e as { order: number }).order * 1)
       .arcDashGap(15)
       .arcDashAnimateTime((e) => defaultProps.arcTime);
-
     globeRef.current
       .pointsData(data)
       .pointColor((e) => (e as { color: string }).color)
       .pointsMerge(true)
       .pointAltitude(0.0)
       .pointRadius(2);
-
     globeRef.current
       .ringsData([])
       .ringColor((e: any) => (t: any) => e.color(t))
@@ -177,7 +171,7 @@ export function Globe({ globeConfig, data }: WorldProps) {
       .ringRepeatPeriod(
         (defaultProps.arcTime * defaultProps.arcLength) / defaultProps.rings
       );
-  };
+  }, [data, defaultProps, globeData]);
 
   useEffect(() => {
     if (globeRef.current) {

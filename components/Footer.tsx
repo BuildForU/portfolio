@@ -42,10 +42,12 @@ const Footer = () => {
     <footer className="w-full pt-20 pb-10 relative" id="contact">
       {/* Grid background */}
       <div className="absolute inset-0 w-full h-full pointer-events-none -z-10">
-        <img
+        <Image
           src="/footer-grid.svg"
           alt="grid"
           className="w-full h-full opacity-50"
+          fill
+          priority
         />
       </div>
       {/* Contact section in footer */}

@@ -1,7 +1,7 @@
 "use client";
 import { cn } from "@/lib/utils";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import React, { useMemo, useRef } from "react";
+import React, { useMemo, useRef, useEffect } from "react";
 import * as THREE from "three";
 
 export const CanvasRevealEffect = ({
@@ -279,7 +279,7 @@ const ShaderMaterial = ({
     });
 
     return materialObject;
-  }, [size.width, size.height, source, getUniforms]);
+  }, [source, getUniforms]);
 
   return (
     <mesh ref={ref as any}>
@@ -305,4 +305,14 @@ interface ShaderProps {
     };
   };
   maxFps?: number;
+}
+
+export function WebGLRendererConfig() {
+  const { gl, size } = useThree();
+
+  useEffect(() => {
+    gl.setPixelRatio(window.devicePixelRatio);
+    gl.setSize(size.width, size.height);
+    gl.setClearColor(0xffaaff, 0);
+  }, [gl, size.width, size.height]);
 }
