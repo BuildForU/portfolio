@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState, useCallback, useMemo } from "react";
 import { Color, Scene, Fog, PerspectiveCamera, Vector3 } from "three";
 import ThreeGlobe from "three-globe";
 import { useThree, Object3DNode, Canvas, extend } from "@react-three/fiber";
@@ -89,7 +89,10 @@ export function Globe({ globeConfig, data }: WorldProps) {
     rings: 1,
     maxRings: 3,
   };
-  const defaultProps = { ...defaultPropsBase, ...globeConfig };
+  const defaultProps = useMemo(
+    () => ({ ...defaultPropsBase, ...globeConfig }),
+    [globeConfig]
+  );
 
   const _buildMaterial = useCallback(() => {
     if (!globeRef.current) return;
