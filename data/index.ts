@@ -92,7 +92,7 @@ export const projects = [
   },
   {
     id: 2,
-    title: "Whitefield Global School",
+    title: "Whitefield International Islamic School",
     des: "Modern school website with admission forms, photo galleries, announcements, and a student dashboard.",
     img: "/wii.png",
     iconLists: ["/react.svg", "/tailwindcss.svg", "/typescript.svg"],
