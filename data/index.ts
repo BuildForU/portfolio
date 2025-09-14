@@ -209,20 +209,20 @@ export const pricing = [
   {
     id: 1,
     title: "Starter Website",
-    price: "₹3,999",
-    description: "Static 3-page site",
+    price: "₹9,999",
+    description: "Static Landing page site (Basic)",
   },
   {
     id: 2,
     title: "Standard Website",
-    price: "₹7,499",
-    description: "Up to 6 pages + contact form",
+    price: "₹15,999",
+    description: "Up to 3 pages + contact form",
   },
   {
     id: 3,
     title: "Advanced Site",
-    price: "₹12,999",
-    description: "Dashboard, CMS, login system, etc.",
+    price: "₹39,999",
+    description: "Dashboard, CMS, login system, etc. (Frontend,Backend,Database)",
   },
   {
     id: 4,
