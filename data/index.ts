@@ -106,6 +106,22 @@ export const projects = [
     iconLists: ["/html5.svg", "/css.svg", "/javascript.svg", "/php.svg"],
     link: "https://anstitlesolution.com",
   },
+  {
+    id: 4,
+    title: "Terene Constructions",
+    des: "Business website for Terene Constructions, featuring service showcase, lead capture, and contact integration.",
+    img: "/terene.png",
+    iconLists: ["/react.svg", "/tailwindcss.svg", "/typescript.svg"],
+    link: "https://tereneconstructions.com",
+  },
+  {
+    id: 5,
+    title: "Zelton Living",
+    des: "Rental management mobile app with phone payment gateway, and admin dashboard for tenants and landlords.",
+    img: "/zelton.png",
+    iconLists: ["/react.svg", "/tailwindcss.svg", "/typescript.svg"],
+    link: "https://zelton.in",
+  },
 ];
 
 export const testimonials = [
@@ -222,7 +238,8 @@ export const pricing = [
     id: 3,
     title: "Advanced Site",
     price: "₹39,999",
-    description: "Dashboard, CMS, login system, etc. (Frontend,Backend,Database)",
+    description:
+      "Dashboard, CMS, login system, etc. (Frontend,Backend,Database)",
   },
   {
     id: 4,
